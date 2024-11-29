@@ -13,6 +13,7 @@ import com.genymobile.scrcpy.util.Ln;
 import com.genymobile.scrcpy.util.LogUtils;
 import com.genymobile.scrcpy.video.SurfaceCapture;
 import com.genymobile.scrcpy.video.VirtualDisplayListener;
+import com.genymobile.scrcpy.wrappers.ActivityManagerHelper;
 import com.genymobile.scrcpy.wrappers.ClipboardManager;
 import com.genymobile.scrcpy.wrappers.InputManager;
 import com.genymobile.scrcpy.wrappers.ServiceManager;
@@ -573,7 +574,7 @@ public class Controller implements AsyncProcessor, VirtualDisplayListener {
 
     private void openHardKeyboardSettings() {
         Intent intent = new Intent("android.settings.HARD_KEYBOARD_SETTINGS");
-        ServiceManager.getActivityManager().startActivity(intent);
+        ActivityManagerHelper.startActivity(intent);
     }
 
     private boolean injectKeyEvent(int action, int keyCode, int repeat, int metaState, int injectMode) {

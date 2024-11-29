@@ -4,6 +4,7 @@ import com.genymobile.scrcpy.AndroidVersions;
 import com.genymobile.scrcpy.FakeContext;
 import com.genymobile.scrcpy.Workarounds;
 import com.genymobile.scrcpy.util.Ln;
+import com.genymobile.scrcpy.wrappers.ActivityManagerHelper;
 import com.genymobile.scrcpy.wrappers.ServiceManager;
 
 import android.annotation.SuppressLint;
@@ -76,11 +77,11 @@ public class AudioDirectCapture implements AudioCapture {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setComponent(new ComponentName(FakeContext.PACKAGE_NAME, "com.android.shell.HeapDumpActivity"));
-        ServiceManager.getActivityManager().startActivity(intent);
+        ActivityManagerHelper.startActivity(intent);
     }
 
     private static void stopWorkaroundAndroid11() {
-        ServiceManager.getActivityManager().forceStopPackage(FakeContext.PACKAGE_NAME);
+        ActivityManagerHelper.forceStopPackage(FakeContext.PACKAGE_NAME);
     }
 
     private void tryStartRecording(int attempts, int delayMs) throws AudioCaptureException {

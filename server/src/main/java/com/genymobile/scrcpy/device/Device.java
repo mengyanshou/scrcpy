@@ -4,6 +4,7 @@ import com.genymobile.scrcpy.AndroidVersions;
 import com.genymobile.scrcpy.FakeContext;
 import com.genymobile.scrcpy.util.Ln;
 import com.genymobile.scrcpy.wrappers.ActivityManager;
+import com.genymobile.scrcpy.wrappers.ActivityManagerHelper;
 import com.genymobile.scrcpy.wrappers.ClipboardManager;
 import com.genymobile.scrcpy.wrappers.DisplayControl;
 import com.genymobile.scrcpy.wrappers.InputManager;
@@ -12,6 +13,7 @@ import com.genymobile.scrcpy.wrappers.SurfaceControl;
 import com.genymobile.scrcpy.wrappers.WindowManager;
 
 import android.annotation.SuppressLint;
+import android.app.IActivityManager;
 import android.content.Intent;
 import android.app.ActivityOptions;
 import android.content.pm.ApplicationInfo;
@@ -19,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.view.InputDevice;
 import android.view.InputEvent;
@@ -302,10 +305,11 @@ public final class Device {
             options = launchOptions.toBundle();
         }
 
-        ActivityManager am = ServiceManager.getActivityManager();
         if (forceStop) {
-            am.forceStopPackage(packageName);
+            ActivityManagerHelper.forceStopPackage(packageName);
         }
-        am.startActivity(launchIntent, options);
+        Ln.i("new way!!!");
+        ActivityManagerHelper.startActivity(launchIntent, options);
+//        am.startActivity(launchIntent, options);
     }
 }

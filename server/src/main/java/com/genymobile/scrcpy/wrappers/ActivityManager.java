@@ -120,46 +120,46 @@ public final class ActivityManager {
         return startActivityAsUserMethod;
     }
 
-    public int startActivity(Intent intent) {
-        return startActivity(intent, null);
-    }
+//    public int startActivity(Intent intent) {
+//        return startActivity(intent, null);
+//    }
+//
+//    @SuppressWarnings("ConstantConditions")
+//    public int startActivity(Intent intent, Bundle options) {
+//        try {
+//            Method method = getStartActivityAsUserMethod();
+//            return (int) method.invoke(
+//                    /* this */ manager,
+//                    /* caller */ null,
+//                    /* callingPackage */ FakeContext.PACKAGE_NAME,
+//                    /* intent */ intent,
+//                    /* resolvedType */ null,
+//                    /* resultTo */ null,
+//                    /* resultWho */ null,
+//                    /* requestCode */ 0,
+//                    /* startFlags */ 0,
+//                    /* profilerInfo */ null,
+//                    /* bOptions */ options,
+//                    /* userId */ /* UserHandle.USER_CURRENT */ -2);
+//        } catch (Throwable e) {
+//            Ln.e("Could not invoke method", e);
+//            return 0;
+//        }
+//    }
 
-    @SuppressWarnings("ConstantConditions")
-    public int startActivity(Intent intent, Bundle options) {
-        try {
-            Method method = getStartActivityAsUserMethod();
-            return (int) method.invoke(
-                    /* this */ manager,
-                    /* caller */ null,
-                    /* callingPackage */ FakeContext.PACKAGE_NAME,
-                    /* intent */ intent,
-                    /* resolvedType */ null,
-                    /* resultTo */ null,
-                    /* resultWho */ null,
-                    /* requestCode */ 0,
-                    /* startFlags */ 0,
-                    /* profilerInfo */ null,
-                    /* bOptions */ options,
-                    /* userId */ /* UserHandle.USER_CURRENT */ -2);
-        } catch (Throwable e) {
-            Ln.e("Could not invoke method", e);
-            return 0;
-        }
-    }
+//    private Method getForceStopPackageMethod() throws NoSuchMethodException {
+//        if (forceStopPackageMethod == null) {
+//            forceStopPackageMethod = manager.getClass().getMethod("forceStopPackage", String.class, int.class);
+//        }
+//        return forceStopPackageMethod;
+//    }
 
-    private Method getForceStopPackageMethod() throws NoSuchMethodException {
-        if (forceStopPackageMethod == null) {
-            forceStopPackageMethod = manager.getClass().getMethod("forceStopPackage", String.class, int.class);
-        }
-        return forceStopPackageMethod;
-    }
-
-    public void forceStopPackage(String packageName) {
-        try {
-            Method method = getForceStopPackageMethod();
-            method.invoke(manager, packageName, /* userId */ /* UserHandle.USER_CURRENT */ -2);
-        } catch (Throwable e) {
-            Ln.e("Could not invoke method", e);
-        }
-    }
+//    public void forceStopPackage(String packageName) {
+//        try {
+//            Method method = getForceStopPackageMethod();
+//            method.invoke(manager, packageName, /* userId */ /* UserHandle.USER_CURRENT */ -2);
+//        } catch (Throwable e) {
+//            Ln.e("Could not invoke method", e);
+//        }
+//    }
 }
